@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect, Switch } from 'react-router'
 import { Link, Route, useHistory } from 'react-router-dom';
 import Layout from '../layout/Layout';
+import HomePage from '../page/home/HomePage';
 import Login from '../page/login/Login';
 import Orders from '../page/orders/Orders';
 import Signup from '../page/signup/Signup';
@@ -34,7 +35,7 @@ const Routes = () => {
         <RouteWrapper
             exact={true}
             path="/"
-            component={() => <h1>Welcome to homepage.</h1>}
+            component={HomePage}
             isPrivateRoute={false}
           />
           <RouteWrapper

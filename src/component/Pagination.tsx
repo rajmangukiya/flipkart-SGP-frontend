@@ -7,32 +7,55 @@ const Pagination = () => {
 
   const data = [
     {
-      id: 1,
-      name: 'first product',
-      price: 100
+      no: 1,
+      order_id: 'first product',
+      order_on: 100,
+      status: 'done',
+      amount: 200,
+      tracking_id: 1
     },
     {
-      id: 1,
-      name: 'first product',
-      price: 100
+      no: 2,
+      order_id: 'first product',
+      order_on: 100,
+      status: 'done',
+      amount: 200,
+      tracking_id: 1
     },
     {
-      id: 1,
-      name: 'first product',
-      price: 100
-    }
+      no: 3,
+      order_id: 'first product',
+      order_on: 100,
+      status: 'done',
+      amount: 200,
+      tracking_id: 1
+    },
   ]
 
-  const columns = [{
-    dataField: 'id',
-    text: 'Product ID'
-  }, {
-    dataField: 'name',
-    text: 'Product Name'
-  }, {
-    dataField: 'price',
-    text: 'Product Price'
-  }];
+  const columns = [
+    {
+      dataField: 'no',
+      text: 'No'
+    }, {
+      dataField: 'order_id',
+      text: 'Order Id'
+    }, {
+      dataField: 'order_on',
+      text: 'Order On'
+    }, {
+      dataField: 'status',
+      text: 'Status'
+    }, {
+      dataField: 'amount',
+      text: 'Amount'
+    }, {
+      dataField: 'tracking_id',
+      text: 'Tracking Id'
+    }, {
+      dataField: 'manage',
+      text: 'Manage'
+    }
+  ];
 
   return (
     <div>

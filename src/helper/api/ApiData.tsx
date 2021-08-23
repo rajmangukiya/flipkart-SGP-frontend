@@ -97,9 +97,8 @@ export const ApiPost = (type: string, userData: any) => {
 
 
 export const ApiPostNoAuth = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.post(`${BaseURL}${type}${s}`, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
+        axios.post(`${BaseURL}${type}`, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
