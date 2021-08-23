@@ -2,6 +2,9 @@ import React from 'react'
 import { Redirect, Switch } from 'react-router'
 import { Link, Route, useHistory } from 'react-router-dom';
 import Layout from '../layout/Layout';
+import Login from '../page/login/Login';
+import Orders from '../page/orders/Orders';
+import Signup from '../page/signup/Signup';
 
 interface RouteWrapperProps {
   component: any;
@@ -23,14 +26,33 @@ const RouteWrapper = ({
 }
 
 const Routes = () => {
+  
   return (
     <>
       <Layout>
         <Switch>
-          <RouteWrapper
+        <RouteWrapper
             exact={true}
             path="/"
-            component={() => <h1>Welcome, to homepage</h1>}
+            component={() => <h1>Welcome to homepage.</h1>}
+            isPrivateRoute={false}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/login"
+            component={Login}
+            isPrivateRoute={false}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/signup"
+            component={Signup}
+            isPrivateRoute={false}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/orders"
+            component={Orders}
             isPrivateRoute={false}
           />
           <RouteWrapper

@@ -11,3 +11,228 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input, textarea {
+  border: none;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+
+
+/* ************ variables ************ */
+:root {
+  --main-blue: rgb(0, 179, 255);
+  --light-blue: rgb(224, 245, 253);
+  --normal-text: 20px;
+}
+
+/* ************ header ************ */
+.main-header {
+  background-color: var(--main-blue);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header>h1 {
+  color: white;
+  letter-spacing: 3px;
+  font-size: 40px;
+}
+
+
+
+
+
+/* ************ login | signup ************ */
+.background {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: var(--main-blue);
+  width: 350px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+
+.heading {
+  padding: 30px 0px;
+}
+
+.heading>h1 {
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 80%;
+  height: 40px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.input::placeholder {
+  color: rgb(196, 196, 196);
+}
+
+.submit {
+  background-color: white;
+  padding: 7px 20px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: var(--main-blue);
+}
+
+.register-link {
+  color: white;
+  font-size: 15px;
+}
+
+
+
+
+
+/* ************ orders ************ */
+.orders {
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+  height: calc(100vh - 80px);
+}
+
+.orders > .first {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orders > .first > .welcome {
+  width: 60%;
+  display: flex;
+}
+
+.orders > .first > .btn-upload, .orders > .first > .btn-manage {
+  width: 20%;
+}
+
+.welcome > h1 {
+  color: var(--main-blue);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.first > .btn-upload > button, .first > .btn-manage > button {
+  width: 80%;
+  background-color: var(--light-blue);
+  color: var(--main-blue);
+  padding: 10px 0px;
+  font-size: var(--normal-text);
+  letter-spacing: 1px;
+  border-radius: 5px;
+}
+
+.second {
+  background-color: var(--light-blue);
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  border-radius: 10px;
+  padding: 0px 0px 20px 0px;
+}
+
+.first-row, .second-row {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+}
+
+.filter-label {
+  background-color: var(--main-blue);
+  padding: 10px 0px;
+  width: 150px;
+  color: white;
+  border-radius: 10px 0px 0px 10px;
+  font-size: var(--normal-text);
+}
+
+.filter-input {
+  padding: 10px 20px;
+  border-radius: 0px 10px 10px 0px;
+  width: 270px;
+  font-size: var(--normal-text);
+}
+
+.btn-filter {
+  background-color: var(--main-blue);
+  margin-left: 50px;
+  width: 420px;
+  border-radius: 10px;
+  font-size: var(--normal-text);
+  color: white;
+}
+
+.add-icon-container {
+  background-color: var(--light-blue);
+  width: 100%;
+  height: 450px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
