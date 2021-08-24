@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import STORAGEKEY from '../../config/storageKey'
 import { ApiPostNoAuth } from '../../helper/api/ApiData'
 import AuthStorage from '../../helper/auth/AuthStorage'
@@ -14,13 +14,14 @@ interface FormData {
 const Login = () => {
 
   const [formData, setFormData] = useState<FormData>();
+  const history = useHistory();
 
   const handleLogin = async (e: any) => {
     try {
       e.preventDefault();
       const res: any = await ApiPostNoAuth('user/auth/login', formData);
       AuthStorage.setStorageJsonData(STORAGEKEY.token, res?.data, true);
-      window.location.href = "/orders";
+      history.push('/orders');
     } catch (error) {
       console.log(error);
     }

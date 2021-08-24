@@ -1,7 +1,11 @@
 import React from 'react'
 import Pagination from '../../component/Pagination'
 
-const WithData = () => {
+interface Props {
+  orderData: Array<any>;
+}
+
+const WithData: React.FC<Props> = ({orderData}) => {
   return (
     <>
       <div className="second">
@@ -34,7 +38,7 @@ const WithData = () => {
       <div className="third">
         <h1>Orders table</h1>
       </div>
-      <Pagination />
+      <Pagination orderData={orderData} />
     </>
   )
 }

@@ -3,7 +3,28 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory, { PaginationProvider, PaginationListStandalone, SizePerPageDropdownStandalone } from 'react-bootstrap-table2-paginator';
 
-const Pagination = () => {
+interface Props {
+  orderData: Array<any>;
+}
+
+const Pagination: React.FC<Props> = ({orderData}) => {
+
+  const onTableChange  = (page: number, sizePerPage: number) => {
+
+  }
+
+  const onPageChange  = (e: any) => {
+
+  }
+
+  const onSizePerPageChange = (e: any) => {
+
+  }
+
+  const page = 1;
+  const sizePerPage = 2;
+  const totalSize = 3;
+  const pagesizedropdownflag = true;
 
   const data = [
     {
@@ -59,14 +80,63 @@ const Pagination = () => {
 
   return (
     <div>
-      <div>
-        <BootstrapTable
-          remote
-          keyField="id"
-          data={data}
-          columns={columns}
-        />
-      </div>
+      <PaginationProvider
+        pagination={
+          paginationFactory({
+            custom: true,
+            // firstPageText:<img src="./img/firstarrow.svg"/>,
+            // lastPageText:<img src="./img/lastarrow.svg"/>,
+            // prePageText: <img src="./img/nextarrow.svg"/>,
+            // nextPageText: <img src="./img/prevarrow.svg"/>,
+            
+            page,
+            sizePerPage,
+            totalSize,
+            sizePerPageList: [{
+              text: '1개', value: 1
+            }, {
+              text: '2개', value: 2
+            }, {
+              text: '5개', value: 5
+            }, {
+              text: '10개', value: 10
+            }
+          ],
+            alwaysShowAllBtns: true,
+          })
+        }
+      >
+        {
+          ({
+            paginationProps,
+            paginationTableProps
+          }) => (
+            <div>
+              <BootstrapTable
+                {...paginationTableProps}
+                remote
+                keyField="id"
+                data={orderData}
+                columns={columns}
+                onTableChange={() => onTableChange(page, sizePerPage)}
+              />
+              {/* <div className="paginationcustom">
+                <PaginationListStandalone
+                  {...paginationProps}
+                  onPageChange={(p) => onPageChange(p)}
+                />
+                {totalSize > 0 && pagesizedropdownflag &&
+                  <SizePerPageDropdownStandalone
+                    {...paginationProps}
+                    onSizePerPageChange={(e) => onSizePerPageChange(e)}
+                  />
+                }
+
+              </div> */}
+            </div>
+          )
+        }
+      </PaginationProvider>
     </div>
   )
 }

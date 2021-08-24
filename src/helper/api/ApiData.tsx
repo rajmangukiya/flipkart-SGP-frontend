@@ -24,7 +24,7 @@ interface apiResponse {
 
 
 export const ApiGet = (type: string) => {
-    console.log("API", API);
+    // console.log("API", API);
     
     return new Promise((resolve, reject) => {
         axios.get(`${BaseURL}${type}`, getHttpOptions())
@@ -33,7 +33,7 @@ export const ApiGet = (type: string) => {
             })
             .catch((error: any) => {
                 if (error?.response?.status === 401) {
-                    AuthStorage.deauthenticateUser();
+                    // AuthStorage.deauthenticateUser();
                     // window.location.href = "/"
                 }
                 if (error && error.hasOwnProperty('response') &&
@@ -46,7 +46,6 @@ export const ApiGet = (type: string) => {
             });
     });
 }
-
 
 export const ApiGetNoAuth = (type: string) => {
     const s = type.includes('?') ? '&' : '?';
@@ -73,9 +72,8 @@ export const ApiGetNoAuth = (type: string) => {
 
 
 export const ApiPost = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.post(`${BaseURL}${type}${s}`, userData, getHttpOptions())
+        axios.post(`${BaseURL}${type}`, userData, getHttpOptions())
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
@@ -209,6 +207,9 @@ export const getHttpOptions = (options = defaultHeaders) => {
     if (options.hasOwnProperty('AdditionalParams') && options.AdditionalParams) {
         headers = { ...headers, ...options.AdditionalParams };
     }
+
+    // console.log("headers", headers);
+    
 
     return { headers }
 }
