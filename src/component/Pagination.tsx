@@ -61,14 +61,35 @@ const Pagination: React.FC<Props> = ({orderData}) => {
       dataField: 'order_id',
       text: 'Order Id'
     }, {
+      dataField: 'shipment_id',
+      text: 'Shipment Id'
+    }, {
       dataField: 'order_on',
       text: 'Order On'
     }, {
-      dataField: 'status',
-      text: 'Status'
+      dataField: 'hsn_code',
+      text: 'HSN CODE'
     }, {
-      dataField: 'amount',
-      text: 'Amount'
+      dataField: 'order_state',
+      text: 'Order State'
+    }, {
+      dataField: 'product',
+      text: 'Product'
+    }, {
+      dataField: 'invoice_no',
+      text: 'Invoice No.'
+    }, {
+      dataField: 'invoice_date',
+      text: 'Invoice Date.'
+    }, {
+      dataField: 'invoice_amount',
+      text: 'Invoice Amount.'
+    }, {
+      dataField: 'selling_price',
+      text: 'Sekking Price'
+    }, {
+      dataField: 'shipping_charge',
+      text: 'Shipping Charge'
     }, {
       dataField: 'tracking_id',
       text: 'Tracking Id'
