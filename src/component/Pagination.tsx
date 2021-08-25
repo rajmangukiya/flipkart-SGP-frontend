@@ -2,17 +2,11 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import * as ReactBootStrap from 'react-bootstrap' 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-// import BootstrapTable from 'react-bootstrap-table-next';
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory, { PaginationProvider, PaginationListStandalone, SizePerPageDropdownStandalone } from 'react-bootstrap-table2-paginator';
-// import paginationFactory from 'react-bootstrap-table2-paginator';
-// import paginationFactory from 'react-bootstrap-table2-paginator'
 import Moment from 'moment'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
-// import filterFactory from 'react-bootstrap-table2-filter';
-// import filterFactory from 'react-bootstrap-table2-filter'
 import { Hidden } from '@material-ui/core';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
