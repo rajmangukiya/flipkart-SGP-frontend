@@ -9,13 +9,29 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Hidden } from '@material-ui/core';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
+import filterFactory, { textFilter, dateFilter} from 'react-bootstrap-table2-filter';
 interface Props {
   orderData: Array<any>;
 }
 
 const Pagination: React.FC<Props> = ({orderData}) => {
   // console.log(Moment(orderData[0].invoice_date).format('DD-MM-YYYY'));
+
+  const [filteredData,setFilteredData] = useState(orderData);
+
+  const handleSearch = () => {
+    // let value = event.target.value.toLowerCase();
+    // let result = [];
+    // console.log(value);
+    // result = orderData.filter((data) => {
+    // return data.title.search(value) != -1;
+    // });
+    // setFilteredData(result);
+  }
+
+  useEffect(() => {
+    setFilteredData(orderData);
+  }, []);
   const onTableChange  = (page: number, sizePerPage: number) => {
 
   }
@@ -62,60 +78,154 @@ const Pagination: React.FC<Props> = ({orderData}) => {
 
   const columns = [
     {
+      filter: textFilter({
+        placeholder : 'order id',
+        caseSensitive: false,
+        style: { backgroundColor: 'green' }
+      }),
       dataField: 'order_id',
-      text: 'Order Id'
+      text: 'Order Id',
+      headerStyle: {
+        width : '14%',
+      },
+      // style: { backgroundColor: 'green' }
+
     }, {
       dataField: 'shipment_id',
-      text: 'Shipment Id'
+      text: 'Shipment Id',
+      headerStyle: {
+        width : '8%',
+      },
     }, {
       dataField: 'order_on',
-      text: 'Order On'
+      text: 'Order On',
+      sort: true,
+      formatter: (cell : any) => {
+        return Moment(cell)
+          // .local()
+          .format("DD-MM-YYYY")
+      },
+      headerStyle: {
+        width : '7%',
+      },
     }, {
       dataField: 'hsn_code',
-      text: 'HSN CODE'
+      text: 'HSN CODE',
+      headerStyle: {
+        width : '6%',
+      },
     }, {
       dataField: 'order_state',
-      text: 'Order State'
+      text: 'Order State',
+      headerStyle: {
+        width : '6%',
+      },
     }, {
       dataField: 'product',
-      text: 'Product'
+      text: 'Product',
+      headerStyle: {
+        width : '8%',
+      },
     }, {
       dataField: 'invoice_no',
-      text: 'Invoice No.'
+      text: 'Invoice No.',
+      headerStyle: {
+        width : '11%',
+      },
     }, {
       dataField: 'invoice_date',
+      sort: true,
       text: 'Invoice Date',
-      title: true, // get higher priority
+      formatter: (cell : any) => {
+        return Moment(cell)
+          // .local()
+          .format("DD-MM-YYYY")
+      },
+      headerStyle: {
+        width : '7%',
+      },
     }, 
     {
       dataField: 'invoice_amount',
       text: 'Invoice Amount',
       sort: true,
+      headerStyle: {
+        width : '5%',
+      },
     }, {
       dataField: 'selling_price',
       text: 'Selling Price',
       sort: true,
+      headerStyle: {
+        width : '5%',
+      },
     }, {
       dataField: 'shipping_charge',
       text: 'Shipping Charge',
       sort: true,
+      headerStyle: {
+        width : '6%',
+      },
     }, {
       dataField: 'tracking_id',
-      text: 'Tracking Id'
+      text: 'Tracking Id',
+      headerStyle: {
+        width : '9%',
+      },
     },
   ];
-
+  const filterColumns = [
+    {
+    dataField: 'order_id',
+    text: 'Order Id',
+    filter: textFilter({
+      
+    })
+  }];
   return (
+    <>
+    
+    <div className="second">
+        <div className="first-row">
+          <div className="input-container">
+            <div className="filter-label">Order From</div>
+            <input className="filter-input" type="date" />
+          </div>
+          <div className="input-container">
+            <div className="filter-label">to</div>
+            <input className="filter-input" type="date" />
+          </div>
+          <div className="input-container">
+            <div className="filter-label" >Order Id</div>
+            {/* <input type="text" onChange={() => handleSearch()} /> */}
+          </div>
+        </div>
+        <div className="second-row">
+          <div className="input-container">
+            <div className="filter-label">Status</div>
+            <input className="filter-input" type="text" />
+          </div>
+          <div className="input-container">
+            <div className="filter-label">Sort</div>
+            <input className="filter-input" type="text" />
+          </div>  
+          <button className="btn-filter">Filter</button>
+        </div>
+      </div>
+      <div className="third">
+        <h1>Orders table</h1>
+      </div>
     <div className="App">
       <BootstrapTable
         keyField="order_id"
         data = {orderData}
         columns = {columns}
+        // columns = {filterColumns}
         pagination = {paginationFactory({sizePerPage : 5, paginationSize : 3})}
-        // filter={ filterFactory()}
+        filter={ filterFactory() }
       />
     </div>
-
+</>
     
     
     // <div>

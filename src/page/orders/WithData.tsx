@@ -9,7 +9,7 @@ interface Props {
 const WithData: React.FC<Props> = ({orderData}) => {
   return (
     <>
-      <div className="second">
+      {/* <div className="second">
         <div className="first-row">
           <div className="input-container">
             <div className="filter-label">Order From</div>
@@ -38,7 +38,7 @@ const WithData: React.FC<Props> = ({orderData}) => {
       </div>
       <div className="third">
         <h1>Orders table</h1>
-      </div>
+      </div> */}
       <Pagination orderData={orderData} />
     </>
   )

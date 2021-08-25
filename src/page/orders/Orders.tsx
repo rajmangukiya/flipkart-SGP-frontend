@@ -19,12 +19,14 @@ const Orders = () => {
   }, [])
 
   useEffect(() => {
-    console.log("orderData", orderData);
-    
+    console.log("orderData", orderData);    
   }, [orderData])
 
   const history = useHistory();
-  const handleRoute = () =>{ 
+  const handleRoute = () =>{
+    //setOrderData = null;
+    // const res: any = await ApiGet('order/get-order')
+    setOrderData(null);
     history.push("/orders");
   }
   return <div className="orders">
@@ -32,7 +34,7 @@ const Orders = () => {
       <div className="welcome">
         <h1>Welcome,<br></br>Seller</h1>
       </div>
-      {
+      {/* {
         orderData
           ?
           // <div className="btn-upload">
@@ -41,10 +43,14 @@ const Orders = () => {
           <div>
             <Button variant="info" onClick={handleRoute}>Upload Sheet</Button>
             {/* <Link to="/signup" className="btn btn-primary">Sign up</Link> */}
-          </div>
+          {/* </div>
           :
-          <></>
-      }
+          <></> */}
+      {/* }  */}
+      
+      <div>
+      <Button variant="info" onClick={handleRoute}>Upload New Sheet</Button>
+      </div>
       <div>
       <Button variant="info">Manage Orders</Button>
       </div>
