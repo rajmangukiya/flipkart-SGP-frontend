@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import { useState } from 'react'
 import { ApiGet } from '../../helper/api/ApiData'
 import WithData from './WithData'
 import WithoutData from './WithoutData'
-
+import { Button } from 'react-bootstrap';
 const Orders = () => {
 
   const [orderData, setOrderData] = useState<any>();
@@ -22,6 +23,10 @@ const Orders = () => {
     
   }, [orderData])
 
+  const history = useHistory();
+  const handleRoute = () =>{ 
+    history.push("/orders");
+  }
   return <div className="orders">
     <div className="first">
       <div className="welcome">
@@ -30,14 +35,18 @@ const Orders = () => {
       {
         orderData
           ?
-          <div className="btn-upload">
-            <button>Upload sheet</button>
+          // <div className="btn-upload">
+          //   <button>Upload sheet</button>
+          // </div>
+          <div>
+            <Button variant="info" onClick={handleRoute}>Upload Sheet</Button>
+            {/* <Link to="/signup" className="btn btn-primary">Sign up</Link> */}
           </div>
           :
           <></>
       }
-      <div className="btn-manage">
-        <button>Manage Returns</button>
+      <div>
+      <Button variant="info">Manage Orders</Button>
       </div>
     </div>
     {orderData?.length ? <WithData orderData={orderData} /> : <WithoutData setOrderData={setOrderData} />}

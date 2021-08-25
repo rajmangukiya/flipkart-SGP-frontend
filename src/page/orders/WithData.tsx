@@ -1,5 +1,6 @@
 import React from 'react'
 import Pagination from '../../component/Pagination'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Props {
   orderData: Array<any>;
