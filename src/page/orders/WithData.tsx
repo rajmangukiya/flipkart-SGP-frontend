@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Pagination from '../../component/Pagination'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,10 +9,11 @@ interface Props {
 const WithData: React.FC<Props> = (props) => {
 
   const { orderData } = props;
+  // const [filteredData, setFilteredData] = useState(orderData);
 
   return (
     <>
-      <div className="second">
+      {/* <div className="second">
         <div className="first-row">
           <div className="input-container">
             <div className="filter-label">Order From</div>
@@ -30,15 +31,16 @@ const WithData: React.FC<Props> = (props) => {
         <div className="second-row">
           <div className="input-container">
             <div className="filter-label">Status</div>
-            <input className="filter-input" type="text" />
+            <input className="filter-input" type="text" value={q} onChange={(e) => setQ(e.target.value)}/>
           </div>
-          <div className="input-container">
+          {/* <div className="input-container">
             <div className="filter-label">Sort</div>
             <input className="filter-input" type="text" />
-          </div>
-          <button className="btn-filter">Filter</button>
-        </div>
-      </div>
+          </div> */}
+          {/* <div></div>
+          <button style={{marginLeft : 'auto', marginRight : '3.25%'}} className="btn-filter">Filter</button>
+        </div> */}
+      {/* </div> */}
       <div className="third">
         <Pagination orderData={orderData} />
       </div>

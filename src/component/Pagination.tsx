@@ -9,7 +9,8 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Hidden } from '@material-ui/core';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-import filterFactory, { textFilter, dateFilter } from 'react-bootstrap-table2-filter';
+import filterFactory, { textFilter, dateFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
+import { RowingSharp } from '@material-ui/icons';
 interface Props {
   orderData: Array<any>;
 }
@@ -18,6 +19,9 @@ const Pagination: React.FC<Props> = ({ orderData }) => {
   // console.log(Moment(orderData[0].invoice_date).format('DD-MM-YYYY'));
 
   const [filteredData, setFilteredData] = useState(orderData);
+  const [status, setStatus] = useState("Ready to dispatch");
+  const [fromDate, setFromDate] = useState(new Date());
+
 
   const handleSearch = () => {
     // let value = event.target.value.toLowerCase();
@@ -30,7 +34,9 @@ const Pagination: React.FC<Props> = ({ orderData }) => {
   }
 
   useEffect(() => {
-    setFilteredData(orderData);
+    // fetch(orderData)
+    console.log('effect : ', filteredData);
+    // setData([orderData]);
   }, []);
   const onTableChange = (page: number, sizePerPage: number) => {
 
@@ -51,6 +57,12 @@ const Pagination: React.FC<Props> = ({ orderData }) => {
         </button>
     );
 }
+
+const selectOptions = {
+  0: 'good',
+  1: 'Bad',
+  2: 'unknown'
+};
 
   const page = 1;
   const sizePerPage = 2;
@@ -102,6 +114,17 @@ const Pagination: React.FC<Props> = ({ orderData }) => {
       headerStyle: {
         width: '5%',
       },
+      // filter: multiSelectFilter({
+      //   options: selectOptions,
+      //   // className: 'test-classname',
+      //   withoutEmptyOption: false,
+      //   // defaultValue: [],
+      //   // comparator: Comparator.LIKE, // default is Comparator.EQ
+      //   // style: { backgroundColor: 'pink' },
+      //   // getFilter: (filter) => { // qualityFilter was assigned once the component has been mounted.
+      //   //   qua = filter;
+      //   // },
+      // })
     }, {
       dataField: 'product',
       text: 'Product',
@@ -172,11 +195,61 @@ const Pagination: React.FC<Props> = ({ orderData }) => {
 
       })
     }];
+
+  function  search(rows : any) {
+    // row = 'ready';
+    console.log('status', status, fromDate);
+    // console.log((Object.values(rows).filter((user : any) => user.order_id === status)));
+    return Object.values(rows).filter((row : any) => (row.order_state === status));
+  }
+
+  function  dateSearch(rows : any) {
+    // row = 'ready';
+    console.log('date: ',rows);
+    // console.log((Object.values(rows).filter((user : any) => user.order_id === q)));
+    return Object.values(rows).filter((row : any) => row.order_on === fromDate);
+  }
+
   return (
     <>
+     <div className="second">
+        <div className="first-row">
+          <div className="input-container">
+            <div className="filter-label">Order From</div>
+            <input className="filter-input" type="date" onChange={(e : any) => setFromDate(e.target.value)}/>
+          </div>
+          <div className="input-container">
+            <div className="filter-label">to</div>
+            <input className="filter-input" type="date" />
+          </div>
+          <div className="input-container">
+            <div className="filter-label">Order Id</div>
+            <input className="filter-input" type="text" />
+          </div>
+        </div>
+        <div className="second-row">
+          <div className="input-container">
+            <div className="filter-label">Status</div>
+            {/* <input className="filter-input" type="text" placeholder="select status"/> */}
+            <select name="status" id="order_state" className="filter-input" placeholder="select status" value={status} onChange={(e : any) => setStatus(e.target.value)}>
+              <option value="Ready to dispatch"></option>
+              <option value="Ready to dispatch">Ready to dispatch</option>
+              <option value="abc">Saab</option>
+              <option value="OD122371832770579000">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+          </div>
+          {/* <div className="input-container">
+            <div className="filter-label">Sort</div>
+            <input className="filter-input" type="text" />
+          </div> */}
+          <div></div>
+          <button style={{marginLeft : 'auto', marginRight : '3.25%'}} className="btn-filter">Filter</button>
+        </div>
+      </div>
       <BootstrapTable
         keyField="order_id"
-        data = {orderData}
+        data = {search(filteredData)}
         columns = {columns}
         // columns = {filterColumns}
         pagination = {paginationFactory({sizePerPage : 5, paginationSize : 3})}
