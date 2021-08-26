@@ -7,10 +7,11 @@ import paginationFactory, { PaginationProvider, PaginationListStandalone, SizePe
 import Moment from 'moment'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Hidden } from '@material-ui/core';
+import { colors, Hidden } from '@material-ui/core';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory, { textFilter, dateFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
-import { RowingSharp } from '@material-ui/icons';
+import { HowToVoteRounded, RowingSharp } from '@material-ui/icons';
+import { blueGrey } from '@material-ui/core/colors';
 interface Props {
   orderData: Array<any>;
 }
@@ -124,7 +125,25 @@ const selectOptions = {
       //   // getFilter: (filter) => { // qualityFilter was assigned once the component has been mounted.
       //   //   qua = filter;
       //   // },
-      // })
+      // }) 
+      // editCellStyle : (row: any) => {
+      //   // if (cell === 'Ready to dispatch') {
+      //     return {
+      //       // style : {
+      //         color : '#FD0303',
+      //         textSize : '10%',
+      //       // }
+      //     };
+      //   // }
+      style: (row : any, rowIndex : any) => { 
+        if (row === "Ready to dispatch") {
+        return {backgroundColor : '#1FAA59'} 
+        } 
+        if (row === "abc") {
+          return {backgroundColor : '#E8BD0D'} 
+        }
+        return {backgroundColor : '#ffffff'}   
+      }
     }, {
       dataField: 'product',
       text: 'Product',
@@ -187,6 +206,9 @@ const selectOptions = {
       formatter: btnFormatter
     },
   ];
+  
+ 
+
   const filterColumns = [
     {
       dataField: 'order_id',
@@ -200,7 +222,7 @@ const selectOptions = {
     // row = 'ready';
     console.log('status', status, fromDate);
     // console.log((Object.values(rows).filter((user : any) => user.order_id === status)));
-    return Object.values(rows).filter((row : any) => (row.order_state === status));
+    return Object.values(rows).filter((row : any) => ((row.order_state === status)) );
   }
 
   function  dateSearch(rows : any) {
@@ -210,6 +232,12 @@ const selectOptions = {
     return Object.values(rows).filter((row : any) => row.order_on === fromDate);
   }
 
+  const rowStyle = (cell : any, rowIndex : any) => {
+    if (cell.order_state === 'Ready to dispatch') {
+      return {backgroundColor : '#38CC77'}
+    }
+    return {backgroundColor : 'red'}
+  };
   return (
     <>
      <div className="second">
@@ -247,6 +275,7 @@ const selectOptions = {
           <button style={{marginLeft : 'auto', marginRight : '3.25%'}} className="btn-filter">Filter</button>
         </div>
       </div>
+      
       <BootstrapTable
         keyField="order_id"
         data = {search(filteredData)}
@@ -254,6 +283,9 @@ const selectOptions = {
         // columns = {filterColumns}
         pagination = {paginationFactory({sizePerPage : 5, paginationSize : 3})}
         filter={ filterFactory() }
+        hover
+        bordered
+        rowStyle={rowStyle} 
       />
     </>
 
