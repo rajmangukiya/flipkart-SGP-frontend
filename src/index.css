@@ -50,6 +50,7 @@ button {
   --main-blue: rgb(0, 179, 255);
   --light-blue: rgb(224, 245, 253);
   --normal-text: 20px;
+  --btn-hover: rgb(141, 221, 255);
 }
 
 /* ************ header ************ */
@@ -162,8 +163,8 @@ button {
   display: flex;
 }
 
-.orders > .first > .btn-upload, .orders > .first > .btn-manage {
-  width: 20%;
+.btn-upload, .btn-manage {
+  width: 300px;
 }
 
 .welcome > h1 {
@@ -172,7 +173,7 @@ button {
   letter-spacing: 2px;
 }
 
-.first > .btn-upload > button, .first > .btn-manage > button {
+.btn-upload > .btn, .btn-manage > .btn {
   width: 80%;
   background-color: var(--light-blue);
   color: var(--main-blue);
@@ -180,6 +181,15 @@ button {
   font-size: var(--normal-text);
   letter-spacing: 1px;
   border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: var(--btn-hover);
+  color: white !important;
+}
+
+.hide {
+  display: none;
 }
 
 .second {
@@ -239,4 +249,20 @@ button {
   margin-top: 50px;
 }
 
+.third {
+  margin-top: 50px;
+}
+
 /* ************ Pagination ************ */
+
+.table-manage-btn {
+  background-color: var(--main-blue);
+  padding: 3px 5px;
+  color: white;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.table-manage-btn:hover {
+  background-color: rgb(60, 194, 251);
+}

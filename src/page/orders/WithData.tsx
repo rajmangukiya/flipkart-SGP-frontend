@@ -6,10 +6,13 @@ interface Props {
   orderData: Array<any>;
 }
 
-const WithData: React.FC<Props> = ({orderData}) => {
+const WithData: React.FC<Props> = (props) => {
+
+  const { orderData } = props;
+
   return (
     <>
-      {/* <div className="second">
+      <div className="second">
         <div className="first-row">
           <div className="input-container">
             <div className="filter-label">Order From</div>
@@ -32,14 +35,13 @@ const WithData: React.FC<Props> = ({orderData}) => {
           <div className="input-container">
             <div className="filter-label">Sort</div>
             <input className="filter-input" type="text" />
-          </div>  
+          </div>
           <button className="btn-filter">Filter</button>
         </div>
       </div>
       <div className="third">
-        <h1>Orders table</h1>
-      </div> */}
-      <Pagination orderData={orderData} />
+        <Pagination orderData={orderData} />
+      </div>
     </>
   )
 }
