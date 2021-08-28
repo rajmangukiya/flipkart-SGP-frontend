@@ -20,7 +20,8 @@ class AuthStorage {
     }
 
     static getToken = () => {
-        return localStorage.getItem(STORAGEKEY.token) || sessionStorage.getItem(STORAGEKEY.token);
+        const token = localStorage.getItem(STORAGEKEY.token) || sessionStorage.getItem(STORAGEKEY.token);
+        return token?.replaceAll("\"", "");
     }
 
     static isUserAuthenticated = () => {

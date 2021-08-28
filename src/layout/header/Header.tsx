@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getUserData } from '../../redux/action/userDataAction';
 
-const mainHeader = () => {
+const Header = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData());    
+  }, [])
+
   return (
     <div className="main-header">
       <h1>Flipkart Handler</h1>
@@ -8,4 +17,4 @@ const mainHeader = () => {
   )
 }
 
-export default mainHeader
+export default Header

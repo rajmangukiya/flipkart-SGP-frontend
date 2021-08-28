@@ -5,37 +5,49 @@ import { ApiGet, ApiPost } from '../../helper/api/ApiData'
 import WithData from './WithData'
 import WithoutData from './WithoutData'
 import { Button } from 'react-bootstrap';
+import { RootStateOrAny, useSelector } from 'react-redux';
 const Orders = () => {
 
   // variables and states
   const [orderData, setOrderData] = useState<any>();
   const [file, setFile] = useState<File>();
-  const history = useHistory();
+  const { userData } = useSelector((state: RootStateOrAny) => state.userData);
+  const [isThereData, setIsThereData] = useState(false);
+  const [totalSize, setTotalSize] = useState(20);
+  const [filteredData, setFilteredData] = useState<any>({
+    startDate: "",
+    endDate: "",
+    orderId: "",
+    status: "Ready to dispatch"
+  });
 
   // helper functions
-  const getOrders = async () => {
-    const res: any = await ApiGet('order/get-order')
-    setOrderData(res.data);
+  const getOrders = async (sizePerPage: number = 5, page: number = 1) => {
+    const res: any = await ApiGet(`order/filtered-orders?start_date=${filteredData.startDate}&end_date=${filteredData.endDate}&order_id=${filteredData.orderId}&status=${filteredData.status}&per_page=${sizePerPage}&page_number=${page}`)
+    setOrderData(res?.data?.order);
+    setTotalSize(res?.data?.count);
+  }
+
+  const checkEmpty = async () => {
+    const res: any = await ApiGet('order/get-order');
+    setIsThereData(res.data)
   }
 
   const importSheet = async () => {
-
     const formdata = new FormData()
-
     if (file) {
       formdata.append('file', file);
     }
-
     await ApiPost('order/import-order', formdata);
     const res: any = await ApiGet('order/get-order')
     console.log("datadata", res.data);
-
     setOrderData(res.data);
   }
 
   // useEffects
   useEffect(() => {
     getOrders();
+    checkEmpty();
   }, [])
 
   useEffect(() => {
@@ -45,14 +57,13 @@ const Orders = () => {
   }, [file])
 
   useEffect(() => {
-    console.log("orderData", orderData);
-
-  }, [orderData])
+    console.log("filteredData", filteredData);
+  }, [filteredData])
 
   return <div className="orders">
     <div className="first">
       <div className="welcome">
-        <h1>Welcome,<br></br>Seller</h1>
+        <h1>Welcome,<br></br>{userData?.first_name} {userData?.last_name}</h1>
       </div>
       {
         orderData?.length
@@ -71,7 +82,18 @@ const Orders = () => {
         <div className="btn" >Manage Orders</div>
       </div>
     </div>
-    {orderData?.length ? <WithData orderData={orderData} /> : <WithoutData setFile={setFile} />}
+    {isThereData
+      ?
+      <WithData
+        orderData={orderData}
+        totalSize={totalSize}
+        getOrders={getOrders}
+        setFilteredData={setFilteredData}
+      />
+      :
+      <WithoutData
+        setFile={setFile}
+      />}
   </div>
 }
 

@@ -266,3 +266,20 @@ button {
 .table-manage-btn:hover {
   background-color: rgb(60, 194, 251);
 }
+
+.paginationcustom .dropdown-menu {
+  transform: translateX(500px) translateY(20px);
+}
+
+.paginationcustom .dropdown-menu .dropdown-item a {
+  color: #404040 !important;
+  width: 100%;
+  display: inline-block !important;
+  text-decoration: none !important;
+  padding: .25rem 1.5rem !important;
+}
+
+.paginationcustom .dropdown-menu .dropdown-item a:hover {
+  color: #404040 !important;
+  text-decoration: none !important;
+}

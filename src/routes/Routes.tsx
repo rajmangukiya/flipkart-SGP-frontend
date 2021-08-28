@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect, Switch } from 'react-router'
 import { Link, Route, useHistory } from 'react-router-dom';
+import AuthStorage from '../helper/auth/AuthStorage';
 import Layout from '../layout/Layout';
 import HomePage from '../page/home/HomePage';
 import Login from '../page/login/Login';
@@ -19,24 +20,34 @@ const RouteWrapper = ({
   isPrivateRoute,
   ...rest
 }: RouteWrapperProps) => {
+  const history = useHistory();
+  const isAuthenticated: boolean = isPrivateRoute
+    ? AuthStorage.isUserAuthenticated()
+    : true;
+
   return (
     <>
-      <Route {...rest} render={(props) => <Component />} />
+      {isAuthenticated
+        ?
+        <Route {...rest} render={(props) => <Component />} />
+        :
+        history.push("/login")
+    }
     </>
   );
 }
 
 const Routes = () => {
-  
+
   return (
     <>
       <Layout>
         <Switch>
-        <RouteWrapper
+          <RouteWrapper
             exact={true}
             path="/"
             component={HomePage}
-            isPrivateRoute={false}
+            isPrivateRoute={true}
           />
           <RouteWrapper
             exact={true}
@@ -54,7 +65,7 @@ const Routes = () => {
             exact={true}
             path="/orders"
             component={Orders}
-            isPrivateRoute={false}
+            isPrivateRoute={true}
           />
           <RouteWrapper
             exact={true}
