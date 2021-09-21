@@ -5,6 +5,7 @@ import AuthStorage from '../helper/auth/AuthStorage';
 import Layout from '../layout/Layout';
 import HomePage from '../page/home/HomePage';
 import Login from '../page/login/Login';
+import ManageOrder from '../page/orders/ManageOrder';
 import Orders from '../page/orders/Orders';
 import Signup from '../page/signup/Signup';
 
@@ -65,6 +66,12 @@ const Routes = () => {
             exact={true}
             path="/orders"
             component={Orders}
+            isPrivateRoute={true}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/orders/:id"
+            component={ManageOrder}
             isPrivateRoute={true}
           />
           <RouteWrapper

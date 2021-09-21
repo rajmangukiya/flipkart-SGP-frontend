@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Pagination from '../../component/Pagination'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import moment from 'moment';
+import { useHistory } from 'react-router';
 
 interface Props {
   orderData: Array<any>;
@@ -14,11 +15,18 @@ const WithData: React.FC<Props> = (props) => {
 
   // variables and states
   const { orderData, totalSize, getOrders, setFilteredData } = props;
+  const history = useHistory();
 
   // helper functions
+
+  const redirectToOrder = (row: any) => {
+    console.log(row);
+    history.push(`/orders/${row.order_id}`);
+  }
+
   const btnFormatter = (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
     return (
-      <button className="table-manage-btn">
+      <button onClick={() => redirectToOrder(row)} className="table-manage-btn">
         manage
       </button>
     );
