@@ -22,6 +22,8 @@ const Orders = () => {
   });
 
   // helper functions
+
+  
   const getOrders = async (sizePerPage: number = 5, page: number = 1) => {
     const res: any = await ApiGet(`order/filtered-orders?start_date=${filteredData.startDate}&end_date=${filteredData.endDate}&order_id=${filteredData.orderId}&status=${filteredData.status}&per_page=${sizePerPage}&page_number=${page}`)
     setOrderData(res?.data?.order);
@@ -29,8 +31,11 @@ const Orders = () => {
   }
 
   const checkEmpty = async () => {
-    const res: any = await ApiGet('order/get-order');
-    setIsThereData(res.data)
+    const res: any = await ApiGet('order/check-empty');
+    setIsThereData(res.data);
+    console.log("res.data", res.data);
+    
+    res.data && getOrders();
   }
 
   const importSheet = async () => {
@@ -39,14 +44,11 @@ const Orders = () => {
       formdata.append('file', file);
     }
     await ApiPost('order/import-order', formdata);
-    const res: any = await ApiGet('order/get-order')
-    console.log("datadata", res.data);
-    setOrderData(res.data);
+    checkEmpty();
   }
 
   // useEffects
   useEffect(() => {
-    getOrders();
     checkEmpty();
   }, [])
 
@@ -55,10 +57,6 @@ const Orders = () => {
       importSheet();
     }
   }, [file])
-
-  useEffect(() => {
-    console.log("filteredData", filteredData);
-  }, [filteredData])
 
   return <div className="orders">
     <div className="first">

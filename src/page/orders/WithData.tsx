@@ -193,7 +193,7 @@ const WithData: React.FC<Props> = (props) => {
           <div className="input-container">
             <div className="filter-label">Status</div>
             {/* <input className="filter-input" type="text" placeholder="select status"/> */}
-            <select name="status" id="order_state" className="filter-input" placeholder="select status" onChange={(e: any) => setFilteredData((prev: any) => {
+            <select name="status" id="order_status" className="filter-input" placeholder="select status" onChange={(e: any) => setFilteredData((prev: any) => {
               return {
                 ...prev,
                 status: e.target.value

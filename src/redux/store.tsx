@@ -9,7 +9,7 @@ const middleware = [thunk];
 const rootReducer = combineReducers({
   loading: isLoadingReducer,
   userData: userDataReducer,
-  login:isUserLoginReducer,
+  is_loggedin: isUserLoginReducer,
 });
 
 
