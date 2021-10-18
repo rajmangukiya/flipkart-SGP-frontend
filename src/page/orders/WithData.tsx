@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Pagination from '../../component/Pagination'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 

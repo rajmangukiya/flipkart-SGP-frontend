@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <div className="background">
-      <div className="container">
+      <div className="login-container">
         <div className="heading">
           <h1>Login</h1>
         </div>

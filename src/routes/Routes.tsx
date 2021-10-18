@@ -7,6 +7,7 @@ import HomePage from '../page/home/HomePage';
 import Login from '../page/login/Login';
 import ManageOrder from '../page/orders/ManageOrder';
 import Orders from '../page/orders/Orders';
+import ReturnOrders from '../page/returnOrders/ReturnOrders';
 import Signup from '../page/signup/Signup';
 
 interface RouteWrapperProps {
@@ -72,6 +73,12 @@ const Routes = () => {
             exact={true}
             path="/orders/:id"
             component={ManageOrder}
+            isPrivateRoute={true}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/return-orders"
+            component={ReturnOrders}
             isPrivateRoute={true}
           />
           <RouteWrapper

@@ -20,6 +20,7 @@ const Orders = () => {
     orderId: "",
     status: "Ready to dispatch"
   });
+  const history = useHistory();
 
   // helper functions
 
@@ -45,6 +46,10 @@ const Orders = () => {
     }
     await ApiPost('order/import-order', formdata);
     checkEmpty();
+  }
+
+  const redirectToReturn = () => {
+    history.push('/return-orders')
   }
 
   // useEffects
@@ -77,7 +82,7 @@ const Orders = () => {
           : ""
       }
       <div className="btn-manage">
-        <div className="btn" >Manage Orders</div>
+        <div onClick={redirectToReturn} className="btn" >Manage Orders</div>
       </div>
     </div>
     {isThereData

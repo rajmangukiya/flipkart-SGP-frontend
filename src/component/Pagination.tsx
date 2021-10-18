@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import * as ReactBootStrap from 'react-bootstrap'
+import React, { useState } from 'react'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory, { PaginationProvider, PaginationListStandalone, SizePerPageDropdownStandalone } from 'react-bootstrap-table2-paginator';
-import Moment from 'moment'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { colors, Hidden } from '@material-ui/core';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-import filterFactory, { textFilter, dateFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
-import { HowToVoteRounded, RowingSharp } from '@material-ui/icons';
-import { blueGrey } from '@material-ui/core/colors';
+import filterFactory from 'react-bootstrap-table2-filter';
 interface Props {
   orderData: Array<any>;
   columns: Array<any>;
@@ -34,7 +27,7 @@ const Pagination: React.FC<Props> = ({
     if (cell.order_state === 'Ready to dispatch') {
       return { backgroundColor: '#38CC77' }
     }
-    return { backgroundColor: 'red' }
+    return { backgroundColor: 'rgb(230, 230, 230)' }
   };
 
   const onPageChange = (pageNumber: any) => {
