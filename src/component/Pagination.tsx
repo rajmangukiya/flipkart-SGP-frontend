@@ -25,9 +25,22 @@ const Pagination: React.FC<Props> = ({
 
   const rowStyle = (cell: any, rowIndex: any) => {
     if (cell.order_state === 'Ready to dispatch') {
-      return { backgroundColor: '#38CC77' }
+      return { backgroundColor: '#D9D55B' }
     }
-    return { backgroundColor: 'rgb(230, 230, 230)' }
+
+    if (cell.order_state === 'Cancelled') {
+      return { backgroundColor: '#FF6263' }
+    }
+
+    if (cell.order_state === 'Completed') {
+      return { backgroundColor: '#1FAA59' }
+    }
+
+    // if (cell.order_state === 'abc') {
+    //   return { backgroundColor: '#fff' }
+    // }
+
+    return { backgroundColor: '#fff' }
   };
 
   const onPageChange = (pageNumber: any) => {

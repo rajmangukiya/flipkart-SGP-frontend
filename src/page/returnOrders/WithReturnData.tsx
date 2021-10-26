@@ -109,9 +109,17 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
                 }
               })
             }>
-              <option selected value="all">All</option>
-              <option value="arrived">Arrived</option>
-              <option value="missing">Missing</option>
+              <option value="Packing in progress">Packing in progress</option>
+              <option value="Form failed">Form failed</option>
+              <option value="Packed">Packed</option>
+              <option value="Ready to dispatch">Ready to dispatch</option>
+              <option value="Pickup complete">Pickup complete</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Rerurn requested">Rerurn requested</option>
+              <option value="Returned">Returned</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Completed">Completed</option>
             </select>
             <button className="bg-primary text-light py-2 px-5 rounded-2" onClick={() => getReturnData()}>Go</button>
             <button className="bg-primary text-light py-2 px-5 rounded-2">Download</button>
