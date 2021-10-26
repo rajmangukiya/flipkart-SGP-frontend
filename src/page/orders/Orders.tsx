@@ -33,9 +33,7 @@ const Orders = () => {
 
   const checkEmpty = async () => {
     const res: any = await ApiGet('order/check-empty');
-    setIsThereData(res.data);
-    console.log("res.data", res.data);
-    
+    setIsThereData(res.data);    
     res.data && getOrders();
   }
 

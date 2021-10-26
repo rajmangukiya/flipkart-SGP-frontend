@@ -405,6 +405,11 @@ select {
   text-decoration: none !important;
 }
 
+.bg-light-blue {
+  --bs-bg-opacity: 1;
+  background-color: #e0f5fd !important;
+}
+
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

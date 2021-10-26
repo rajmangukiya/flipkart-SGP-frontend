@@ -20,7 +20,7 @@ const Pagination: React.FC<Props> = ({
 }) => {
 
   const [page, setPage] = useState(1);
-  const [sizePerPage, setSizePerPage] = useState(5);
+  const [sizePerPage, setSizePerPage] = useState(10);
   const pagesizedropdownflag = true;
 
   const rowStyle = (cell: any, rowIndex: any) => {

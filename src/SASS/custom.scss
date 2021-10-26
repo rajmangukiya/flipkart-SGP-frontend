@@ -350,6 +350,9 @@ select {
 // ******************************************************
 
 
-
+.bg-light-blue {
+  --bs-bg-opacity: 1;
+  background-color: $light-blue !important;
+}
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
