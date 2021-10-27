@@ -14,13 +14,14 @@ const WithoutData: React.FC<Props> = (props) => {
   const history = useHistory();
 
   return (
-    <div className="add-icon-container">
+    <div className="bg-light-blue mt-3 rounded-3">
       <label>
         {
           <AddCircleIcon style={{
             color: 'rgb(0, 179, 255)',
             fontSize: 300,
-            cursor: "pointer"
+            cursor: "pointer",
+            margin: '100px'
           }} />
         }
         <input type="file" className="hide" onChange={(e: any) => {

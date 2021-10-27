@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ApiPostNoAuth } from '../../helper/api/ApiData';
+import AuthStorage from '../../helper/auth/AuthStorage';
 
 interface FormData {
   first_name: string,
@@ -23,6 +23,8 @@ interface FormError {
 }
 
 const Signup = () => {
+
+  const history = useHistory()
 
   const [formData, setFormData] = useState<FormData>({
     first_name: "",
@@ -81,11 +83,17 @@ const Signup = () => {
     formData?.password === confirmPwd && setPwdError(false);
   }, [confirmPwd, formData?.password])
 
+  useEffect(() => {
+    if(AuthStorage.isUserAuthenticated()) {
+      history.push('/orders')
+    }
+  }, [])
+
   return (
     <>
-      <div className="background">
-        <div className="container">
-          <div className="heading">
+      <div className="container mt-5 d-flex justify-content-center">
+        <div className="w-50 bg-primary py-4 rounded-3">
+          <div className="text-light pb-3">
             <h1>Register</h1>
           </div>
           <form action="" className="form">
@@ -152,11 +160,11 @@ const Signup = () => {
             }
             <input
               type="submit"
-              className="submit"
+              className="px-4 py-2 bg-white text-primary rounded-pill"
               value="Register"
               onClick={(e) => handleSignup(e)} />
             <div>
-              <Link className="register-link" to="/login">already user? login</Link>
+              <Link className="text-light" to="/login">already user? login</Link>
             </div>
           </form>
         </div>

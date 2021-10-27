@@ -73,7 +73,7 @@ const ReturnOrders = () => {
         </div>
         <label>
           <div className="btn-upload">
-            <div className="btn" >Upload New Sheet</div>
+            <div className="btna" >Upload New Sheet</div>
           </div>
           <input className="hide" type="file" onChange={(e: any) => setFile(e.target.files[0])}></input>
         </label>

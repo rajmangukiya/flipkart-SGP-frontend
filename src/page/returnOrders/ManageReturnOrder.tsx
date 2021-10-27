@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { ApiGet } from '../../helper/api/ApiData'
@@ -11,8 +12,18 @@ const ManageReturnOrder = () => {
 
   const getOrder = async () => {
     const { data }: any = await ApiGet(`return-order/get-return-order?orderId=${id}`);
-    setReturnOrder(data)
-    console.log("data", data);
+    setReturnOrder({
+      ...data,
+      completed_date: moment(data?.completed_date).calendar().toString(),
+      created_at: moment(data?.created_at).calendar().toString(),
+      out_for_delivery_date: moment(data?.out_for_delivery_date).calendar().toString(),
+      picked_up_date: moment(data?.picked_up_date).calendar().toString(),
+      return_approval_date: moment(data?.return_approval_date).calendar().toString(),
+      return_delivery_promise_date: moment(data?.return_delivery_promise_date).calendar().toString(),
+      return_requested_date: moment(data?.return_requested_date).calendar().toString(),
+      updated_at: moment(data?.updated_at).calendar().toString(),
+
+    })
     
   }
 

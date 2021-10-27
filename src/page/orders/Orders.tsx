@@ -76,13 +76,15 @@ const Orders = () => {
           ?
           <>
             <label>
-              <button className="btn-lg btn-primary text-light" >Upload New Sheet</button>
+              <div className="btn-upload">
+                <div className="btna" >Upload New Sheet</div>
+              </div>
               <input className="hide" type="file" onChange={(e: any) => setFile(e.target.files[0])}></input>
             </label>
           </>
           : ""
       }
-      <button onClick={redirectToReturn} className="btn-lg btn-primary text-light" >Return Orders Orders</button>
+      <button onClick={redirectToReturn} className="btn-lg btn-primary text-light" >Return Orders</button>
     </div>
     {isThereData
       ?

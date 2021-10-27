@@ -24,9 +24,9 @@ const Pagination: React.FC<Props> = ({
   const pagesizedropdownflag = true;
 
   const rowStyle = (cell: any, rowIndex: any) => {
-    if (cell.order_state === 'Ready to dispatch') {
-      return { backgroundColor: '#38CC77' }
-    }
+    // if (cell.order_state === 'Ready to dispatch') {
+    //   return { backgroundColor: '#38CC77' }
+    // }
     
     return { backgroundColor: 'rgb(230, 230, 230)' }
   };

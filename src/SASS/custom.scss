@@ -222,22 +222,18 @@ select {
   letter-spacing: 2px;
 }
 
-.btn-upload > .btn, .btn-manage > .btn {
+.btn-upload > .btna, .btn-manage > .btn {
   width: 80%;
-  background-color: $light-blue;
-  color: $primary;
+  background-color: $primary;
+  color: white;
   padding: 10px 0px;
   font-size: $normal-text;
   letter-spacing: 1px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.btn:hover {
-  background-color: $btn-hover;
-  color: white !important;
-}
-
-.hide {
+.hide { 
   display: none;
 }
 

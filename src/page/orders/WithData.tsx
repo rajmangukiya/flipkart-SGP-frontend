@@ -70,15 +70,15 @@ const WithData: React.FC<Props> = (props) => {
       headerStyle: {
         width: '12%',
       },
-      // style: (row: any, rowIndex: any) => {
-      //   if (row === "Ready to dispatch") {
-      //     return { backgroundColor: '#1FAA59' }
-      //   }
-      //   if (row === "abc") {
-      //     return { backgroundColor: '#E8BD0D' }
-      //   }
-      //   return { backgroundColor: '#ffffff' }
-      // }
+      style: (row: any, rowIndex: any) => {
+        if (row === "Ready to dispatch") {
+          return { backgroundColor: '#1FAA59' }
+        }
+        if (row === "abc") {
+          return { backgroundColor: '#E8BD0D' }
+        }
+        return { backgroundColor: '#ffffff' }
+      }
     },
     {
       dataField: 'product',
@@ -144,7 +144,10 @@ const WithData: React.FC<Props> = (props) => {
       headerStyle: {
         width: '',
       },
-      formatter: btnFormatter
+      formatter: btnFormatter,
+      style: (row: any, rowIndex: any) => {
+        // return { backgroundColor: '#f5ef42' }
+      }
     },
   ];
 
