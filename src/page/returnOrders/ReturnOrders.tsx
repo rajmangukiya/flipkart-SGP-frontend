@@ -35,8 +35,6 @@ const ReturnOrders = () => {
           no: ((pageNumber - 1) * perPage) + index + 1
         }
       }));
-      console.log(res.data);
-      
       setTotalSize(res?.data?.count)
       setTotalPrice(res?.data?.total)
     } catch (error) {

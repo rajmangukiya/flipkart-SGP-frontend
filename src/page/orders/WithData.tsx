@@ -25,7 +25,7 @@ const WithData: React.FC<Props> = (props) => {
 
   const btnFormatter = (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
     return (
-      <button onClick={() => redirectToOrder(row)} className="table-manage-btn">
+      <button onClick={() => redirectToOrder(row)} className="btn btn-primary text-light">
         manage
       </button>
     );
@@ -33,19 +33,19 @@ const WithData: React.FC<Props> = (props) => {
 
   const columns = [
     {
+      dataField: 'no',
+      text: 'no',headerStyle: {
+        width: '3%',
+      },
+    },
+    {
       dataField: 'order_id',
       text: 'Order Id',
       headerStyle: {
-        width: '14%',
-        style: { backgroudColor: 'green' }
+        width: '15%',
       },
-    }, {
-      dataField: 'shipment_id',
-      text: 'Shipment Id',
-      headerStyle: {
-        width: '8%',
-      },
-    }, {
+    },
+    {
       dataField: 'order_on',
       text: 'Order On',
       sort: true,
@@ -54,107 +54,95 @@ const WithData: React.FC<Props> = (props) => {
           .format("DD-MM-YYYY")
       },
       headerStyle: {
-        width: '7%',
+        width: '10%',
       },
-    }, {
-      dataField: 'hsn_code',
-      text: 'HSN CODE',
-      headerStyle: {
-        width: '6%',
-      },
-    }, {
+    }, 
+    // {
+    //   dataField: 'hsn_code',
+    //   text: 'HSN CODE',
+    //   headerStyle: {
+    //     width: '6%',
+    //   },
+    // }, 
+    {
       dataField: 'order_state',
       text: 'Order State',
       headerStyle: {
-        width: '5%',
+        width: '12%',
       },
-      // filter: multiSelectFilter({
-      //   options: selectOptions,
-      //   // className: 'test-classname',
-      //   withoutEmptyOption: false,
-      //   // defaultValue: [],
-      //   // comparator: Comparator.LIKE, // default is Comparator.EQ
-      //   // style: { backgroundColor: 'pink' },
-      //   // getFilter: (filter) => { // qualityFilter was assigned once the component has been mounted.
-      //   //   qua = filter;
-      //   // },
-      // }) 
-      // editCellStyle : (row: any) => {
-      //   // if (cell === 'Ready to dispatch') {
-      //     return {
-      //       // style : {
-      //         color : '#FD0303',
-      //         textSize : '10%',
-      //       // }
-      //     };
-      //   // }
-      style: (row: any, rowIndex: any) => {
-        if (row === "Ready to dispatch") {
-          return { backgroundColor: '#1FAA59' }
-        }
-        if (row === "abc") {
-          return { backgroundColor: '#E8BD0D' }
-        }
-        return { backgroundColor: '#ffffff' }
-      }
-    }, {
+      // style: (row: any, rowIndex: any) => {
+      //   if (row === "Ready to dispatch") {
+      //     return { backgroundColor: '#1FAA59' }
+      //   }
+      //   if (row === "abc") {
+      //     return { backgroundColor: '#E8BD0D' }
+      //   }
+      //   return { backgroundColor: '#ffffff' }
+      // }
+    },
+    {
       dataField: 'product',
       text: 'Product',
       headerStyle: {
-        width: '8%',
-      },
-    }, {
-      dataField: 'invoice_no',
-      text: 'Invoice No.',
-      headerStyle: {
-        width: '10%',
-      },
-    }, {
-      dataField: 'invoice_date',
-      sort: true,
-      text: 'Invoice Date',
-      formatter: (cell: any) => {
-        return moment(cell)
-          // .local()
-          .format("DD-MM-YYYY")
-      },
-      headerStyle: {
-        width: '6%',
+        width: '30%',
       },
     },
+    // {
+    //   dataField: 'invoice_no',
+    //   text: 'Invoice No.',
+    //   headerStyle: {
+    //     width: '10%',
+    //   },
+    // }, 
+    // {
+    //   dataField: 'invoice_date',
+    //   sort: true,
+    //   text: 'Invoice Date',
+    //   formatter: (cell: any) => {
+    //     return moment(cell)
+    //       // .local()
+    //       .format("DD-MM-YYYY")
+    //   },
+    //   headerStyle: {
+    //     width: '6%',
+    //   },
+    // },
     {
       dataField: 'invoice_amount',
       text: 'Invoice Amount',
       sort: true,
       headerStyle: {
-        width: '5%',
+        width: '7%',
       },
-    }, {
+    },
+    {
       dataField: 'selling_price',
       text: 'Selling Price',
       sort: true,
       headerStyle: {
-        width: '4%',
+        width: '6%',
       },
-    }, {
+    },
+    {
       dataField: 'shipping_charge',
       text: 'Shipping Charge',
       sort: true,
       headerStyle: {
-        width: '5%',
+        width: '8%',
       },
-    }, {
-      dataField: 'tracking_id',
-      text: 'Tracking Id',
-      headerStyle: {
-        width: '9%',
-      },
-    },
+    }, 
+    // {
+    //   dataField: 'tracking_id',
+    //   text: 'Tracking Id',
+    //   headerStyle: {
+    //     width: '9%',
+    //   },
+    // },
     {
       dataField: 'manage',
       text: 'manage',
       headerStyle: {
-        width: '5%',
+        width: '',
       },
       formatter: btnFormatter
     },
@@ -206,10 +194,8 @@ const WithData: React.FC<Props> = (props) => {
                 status: e.target.value
               }
             })}>
+              <option value="">All</option>
               <option value="Ready to dispatch">Ready to dispatch</option>
-              <option value="Saab">Saab</option>
-              <option value="Mercedes">Mercedes</option>
-              <option value="Audi">Audi</option>
             </select>
           </div>
           <div></div>

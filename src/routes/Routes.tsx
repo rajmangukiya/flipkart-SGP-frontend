@@ -7,6 +7,7 @@ import HomePage from '../page/home/HomePage';
 import Login from '../page/login/Login';
 import ManageOrder from '../page/orders/ManageOrder';
 import Orders from '../page/orders/Orders';
+import ManageReturnOrder from '../page/returnOrders/ManageReturnOrder';
 import ReturnOrders from '../page/returnOrders/ReturnOrders';
 import Signup from '../page/signup/Signup';
 
@@ -79,6 +80,12 @@ const Routes = () => {
             exact={true}
             path="/return-orders"
             component={ReturnOrders}
+            isPrivateRoute={true}
+          />
+          <RouteWrapper
+            exact={true}
+            path="/return-orders/:id"
+            component={ManageReturnOrder}
             isPrivateRoute={true}
           />
           <RouteWrapper

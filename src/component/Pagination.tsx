@@ -27,6 +27,7 @@ const Pagination: React.FC<Props> = ({
     if (cell.order_state === 'Ready to dispatch') {
       return { backgroundColor: '#38CC77' }
     }
+    
     return { backgroundColor: 'rgb(230, 230, 230)' }
   };
 

@@ -24,16 +24,21 @@ const Orders = () => {
 
   // helper functions
 
-  
-  const getOrders = async (sizePerPage: number = 5, page: number = 1) => {
-    const res: any = await ApiGet(`order/filtered-orders?start_date=${filteredData.startDate}&end_date=${filteredData.endDate}&order_id=${filteredData.orderId}&status=${filteredData.status}&per_page=${sizePerPage}&page_number=${page}`)
-    setOrderData(res?.data?.order);
+
+  const getOrders = async (perPage: number = 10, pageNumber: number = 1) => {
+    const res: any = await ApiGet(`order/filtered-orders?start_date=${filteredData.startDate}&end_date=${filteredData.endDate}&order_id=${filteredData.orderId}&status=${filteredData.status}&per_page=${perPage}&page_number=${pageNumber}`)
+    setOrderData(res?.data?.order.map((x: any, index: number) => {
+      return {
+        ...x,
+        no: ((pageNumber - 1) * perPage) + index + 1
+      }
+    }));
     setTotalSize(res?.data?.count);
   }
 
   const checkEmpty = async () => {
     const res: any = await ApiGet('order/check-empty');
-    setIsThereData(res.data);    
+    setIsThereData(res.data);
     res.data && getOrders();
   }
 
@@ -71,17 +76,13 @@ const Orders = () => {
           ?
           <>
             <label>
-              <div className="btn-upload">
-                <div className="btn" >Upload New Sheet</div>
-              </div>
+              <button className="btn-lg btn-primary text-light" >Upload New Sheet</button>
               <input className="hide" type="file" onChange={(e: any) => setFile(e.target.files[0])}></input>
             </label>
           </>
           : ""
       }
-      <div className="btn-manage">
-        <div onClick={redirectToReturn} className="btn" >Manage Orders</div>
-      </div>
+      <button onClick={redirectToReturn} className="btn-lg btn-primary text-light" >Return Orders Orders</button>
     </div>
     {isThereData
       ?
