@@ -200,6 +200,14 @@ const WithData: React.FC<Props> = (props) => {
             })}>
               <option value="">All</option>
               <option value="Ready to dispatch">Ready to dispatch</option>
+              <option value="packed">packed</option>
+              <option value="canceled">canceled</option>
+              <option value="Pickup complete">Pickup complete</option>
+              <option value="Return Requested">Return Requested</option>
+              <option value="Returned">Returned</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Completed">Completed</option>
             </select>
           </div>
           <div></div>

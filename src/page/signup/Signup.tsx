@@ -36,6 +36,7 @@ const Signup = () => {
   });
   const [confirmPwd, setConfirmPwd] = useState<string>();
   const [pwdError, setPwdError] = useState(false);
+  const [mobileError, setMobileError] = useState(false);
   const [formError, setFormError] = useState<FormError>({
     first_name: true,
     last_name: true,
@@ -45,18 +46,20 @@ const Signup = () => {
     api_key: true,
   });
 
-  const handleFormError = () => {
-    setFormError({
-      first_name: true,
-      last_name: true,
-      email: !((/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(formData?.email)),
-      mobile: !((/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/).test(formData?.mobile)),
-      password: true,
-      api_key: true,
-    })
-  }
+  // const handleFormError = () => {
+  //   setFormError({
+  //     first_name: true,
+  //     last_name: true,
+  //     email: !((/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(formData?.email)),
+  //     mobile: !((/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/).test(formData?.mobile)),
+  //     password: true,
+  //     api_key: true,
+  //   })
+  // }
 
   const handleFormChange = (e: any, name: string) => {
+    setPwdError(false)
+    setMobileError(false)
     setFormData((prev: any) => {
       return {
         ...prev,
@@ -70,6 +73,10 @@ const Signup = () => {
       e.preventDefault();
       if (formData?.password != confirmPwd) {
         setPwdError(true);
+        return;
+      }
+      if(!formData?.mobile.match(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/) ) {
+        setMobileError(true)
         return;
       }
       const data = await ApiPostNoAuth('user/auth/signup', formData)
@@ -156,6 +163,11 @@ const Signup = () => {
             {
               pwdError ?
                 <div className="error">both password should be same</div>
+                : ""
+            }
+            {
+              mobileError ?
+                <div className="error">mobile number is not valid</div>
                 : ""
             }
             <input
