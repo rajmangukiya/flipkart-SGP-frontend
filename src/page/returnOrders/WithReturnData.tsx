@@ -122,7 +122,7 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
               <option value="Completed">Completed</option>
             </select>
             <button className="bg-primary text-light py-2 px-5 rounded-2" onClick={() => getReturnData()}>Go</button>
-            <button className="bg-primary text-light py-2 px-5 rounded-2">Download</button>
+            {/* <button className="bg-primary text-light py-2 px-5 rounded-2">Download</button> */}
           </div>
           <div className="w-100 d-flex justify-content-between">
           </div>
