@@ -11,49 +11,31 @@ interface Props {
   totalSize: number;
   getOrders: any;
 }
-
 const Pagination: React.FC<Props> = ({
   orderData,
   columns,
   totalSize,
   getOrders
 }) => {
-
   const [page, setPage] = useState(1);
   const [sizePerPage, setSizePerPage] = useState(10);
   const pagesizedropdownflag = true;
-
   const rowStyle = (cell: any, rowIndex: any) => {
-    if (cell.order_state === 'Ready to dispatch') {
-      return { backgroundColor: '#D9D55B' }
-    }
-
-    if (cell.order_state === 'Cancelled') {
-      return { backgroundColor: '#FF6263' }
-    }
-
-    if (cell.order_state === 'Completed') {
-      return { backgroundColor: '#1FAA59' }
-    }
-
-    // if (cell.order_state === 'abc') {
-    //   return { backgroundColor: '#fff' }
+    // if (cell.order_state === 'Ready to dispatch') {
+    //   return { backgroundColor: '#38CC77' }
     // }
-
-    return { backgroundColor: '#fff' }
+   
+    return { backgroundColor: 'rgb(230, 230, 230)' }
   };
-
   const onPageChange = (pageNumber: any) => {
     setPage(pageNumber);
     getOrders(sizePerPage, pageNumber);
   }
-
   const onSizePerPageChange = (sizeperpage: any) => {
     setSizePerPage(sizeperpage)
     setPage(1);
     getOrders(sizeperpage, 1);
   }
-
   return (
     <div>
       <PaginationProvider
@@ -106,7 +88,6 @@ const Pagination: React.FC<Props> = ({
                     onSizePerPageChange={(e) => onSizePerPageChange(e)}
                   />
                 }
-
               </div>
             </div>
           )
@@ -115,5 +96,4 @@ const Pagination: React.FC<Props> = ({
     </div>
   )
 }
-
 export default Pagination

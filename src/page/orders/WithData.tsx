@@ -71,38 +71,17 @@ const WithData: React.FC<Props> = (props) => {
       headerStyle: {
         width: '12%',
       },
-      // filter: multiSelectFilter({
-      //   options: selectOptions,
-      //   // className: 'test-classname',
-      //   withoutEmptyOption: false,
-      //   // defaultValue: [],
-      //   // comparator: Comparator.LIKE, // default is Comparator.EQ
-      //   // style: { backgroundColor: 'pink' },
-      //   // getFilter: (filter) => { // qualityFilter was assigned once the component has been mounted.
-      //   //   qua = filter;
-      //   // },
-      // }) 
-      // editCellStyle : (row: any) => {
-      //   // if (cell === 'Ready to dispatch') {
-      //     return {
-      //       // style : {
-      //         color : '#FD0303',
-      //         textSize : '10%',
-      //       // }
-      //     };
-      //   // }
-      
-      // box color
-      // style: (row: any, rowIndex: any) => {
-      //   if (row === "Ready to dispatch") {
-      //     return { backgroundColor: '#1FAA59' }
-      //   }
-      //   if (row === "abc") {
-      //     return { backgroundColor: '#E8BD0D' }
-      //   }
-      //   return { backgroundColor: '#ffffff' }
-      // }
-    }, {
+      style: (row: any, rowIndex: any) => {
+        if (row === "Ready to dispatch") {
+          return { backgroundColor: '#1FAA59' }
+        }
+        if (row === "abc") {
+          return { backgroundColor: '#E8BD0D' }
+        }
+        return { backgroundColor: '#ffffff' }
+      }
+    },
+    {
       dataField: 'product',
       text: 'Product',
       headerStyle: {
@@ -219,13 +198,12 @@ const WithData: React.FC<Props> = (props) => {
                 status: e.target.value
               }
             })}>
-              <option value="Packing in progress">Packing in progress</option>
-              <option value="Form failed">Form failed</option>
-              <option value="Packed">Packed</option>
+              <option value="">All</option>
               <option value="Ready to dispatch">Ready to dispatch</option>
+              <option value="packed">packed</option>
+              <option value="canceled">canceled</option>
               <option value="Pickup complete">Pickup complete</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Rerurn requested">Rerurn requested</option>
+              <option value="Return Requested">Return Requested</option>
               <option value="Returned">Returned</option>
               <option value="Shipped">Shipped</option>
               <option value="Delivered">Delivered</option>
