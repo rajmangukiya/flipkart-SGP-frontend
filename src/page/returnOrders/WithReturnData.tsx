@@ -10,7 +10,7 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
 
   const redirectToOrder = (row: any) => {
     console.log(row);
-    history.push(`/return-orders/${row.order_id}`);
+    history.push(`/return-orders/${row.id}`);
   }
 
   const btnFormatter = (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
@@ -22,8 +22,9 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
   }
 
   const cmpltBtnFormatter = (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
+    const className = `btn ${row.status === 'missing' ? 'btn-danger' : 'btn-success'} text-white px-3 py-1 rounded-2`
     return (
-      <button className="btn btn-primary text-white px-3 py-1 rounded-2" onClick={async () => {
+      <button className={className} onClick={async () => {
         await ApiPost(`return-order/change-status/${row.id}`, {})
         getReturnData()
       }}>
@@ -44,7 +45,6 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
       text: 'Order Id',
       headerStyle: {
         // width: '14%',
-        style: { backgroudColor: 'green' }
       },
     },
     {
@@ -134,15 +134,6 @@ const WithReturnData: React.FC<any> = ({ returnOrders, totalSize, getReturnData,
           getOrders={getReturnData}
         />
       </div>
-      {/* <div className="w-50 p-4">
-        <h3 className="text-primary pb-4">Missing Orders</h3>
-        <Pagination
-          orderData={returnOrders}
-          columns={columns}
-          totalSize={totalSize}
-          getOrders={getReturnData}
-        />
-      </div> */}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import STORAGEKEY from '../../config/storageKey'
 import { ApiPostNoAuth } from '../../helper/api/ApiData'
 import AuthStorage from '../../helper/auth/AuthStorage'
@@ -38,6 +38,12 @@ const Login = () => {
     const type = inputRef.current.getAttribute('type') === 'password' ? 'text' : 'password';
     inputRef.current.setAttribute('type', type)
   }
+
+  useEffect(() => {
+    if(AuthStorage.isUserAuthenticated()) {
+      history.push('/orders')
+    }
+  }, [])
 
   return (
     <div className="background">

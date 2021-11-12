@@ -259,19 +259,15 @@ select {
   letter-spacing: 2px;
 }
 
-.btn-upload > .btn, .btn-manage > .btn {
+.btn-upload > .btna, .btn-manage > .btn {
   width: 80%;
-  background-color: #e0f5fd;
-  color: #00b3ff;
+  background-color: #00b3ff;
+  color: white;
   padding: 10px 0px;
   font-size: 20px;
   letter-spacing: 1px;
   border-radius: 5px;
-}
-
-.btn:hover {
-  background-color: #8dddff;
-  color: white !important;
+  cursor: pointer;
 }
 
 .hide {

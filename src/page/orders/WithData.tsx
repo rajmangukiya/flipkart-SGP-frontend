@@ -10,6 +10,7 @@ interface Props {
   setFilteredData: any;
 }
 
+// all function if data is available
 const WithData: React.FC<Props> = (props) => {
 
   // variables and states
@@ -25,7 +26,7 @@ const WithData: React.FC<Props> = (props) => {
 
   const btnFormatter = (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
     return (
-      <button onClick={() => redirectToOrder(row)} className="table-manage-btn">
+      <button onClick={() => redirectToOrder(row)} className="btn btn-primary text-light">
         manage
       </button>
     );
@@ -33,19 +34,19 @@ const WithData: React.FC<Props> = (props) => {
 
   const columns = [
     {
+      dataField: 'no',
+      text: 'no',headerStyle: {
+        width: '3%',
+      },
+    },
+    {
       dataField: 'order_id',
       text: 'Order Id',
       headerStyle: {
-        width: '14%',
-        style: { backgroudColor: 'green' }
+        width: '15%',
       },
-    }, {
-      dataField: 'shipment_id',
-      text: 'Shipment Id',
-      headerStyle: {
-        width: '8%',
-      },
-    }, {
+    },
+    {
       dataField: 'order_on',
       text: 'Order On',
       sort: true,
@@ -54,19 +55,21 @@ const WithData: React.FC<Props> = (props) => {
           .format("DD-MM-YYYY")
       },
       headerStyle: {
-        width: '7%',
+        width: '10%',
       },
-    }, {
-      dataField: 'hsn_code',
-      text: 'HSN CODE',
-      headerStyle: {
-        width: '6%',
-      },
-    }, {
+    }, 
+    // {
+    //   dataField: 'hsn_code',
+    //   text: 'HSN CODE',
+    //   headerStyle: {
+    //     width: '6%',
+    //   },
+    // }, 
+    {
       dataField: 'order_state',
       text: 'Order State',
       headerStyle: {
-        width: '5%',
+        width: '12%',
       },
       // filter: multiSelectFilter({
       //   options: selectOptions,
@@ -103,62 +106,70 @@ const WithData: React.FC<Props> = (props) => {
       dataField: 'product',
       text: 'Product',
       headerStyle: {
-        width: '8%',
-      },
-    }, {
-      dataField: 'invoice_no',
-      text: 'Invoice No.',
-      headerStyle: {
-        width: '10%',
-      },
-    }, {
-      dataField: 'invoice_date',
-      sort: true,
-      text: 'Invoice Date',
-      formatter: (cell: any) => {
-        return moment(cell)
-          // .local()
-          .format("DD-MM-YYYY")
-      },
-      headerStyle: {
-        width: '6%',
+        width: '30%',
       },
     },
+    // {
+    //   dataField: 'invoice_no',
+    //   text: 'Invoice No.',
+    //   headerStyle: {
+    //     width: '10%',
+    //   },
+    // }, 
+    // {
+    //   dataField: 'invoice_date',
+    //   sort: true,
+    //   text: 'Invoice Date',
+    //   formatter: (cell: any) => {
+    //     return moment(cell)
+    //       // .local()
+    //       .format("DD-MM-YYYY")
+    //   },
+    //   headerStyle: {
+    //     width: '6%',
+    //   },
+    // },
     {
       dataField: 'invoice_amount',
       text: 'Invoice Amount',
       sort: true,
       headerStyle: {
-        width: '5%',
+        width: '7%',
       },
-    }, {
+    },
+    {
       dataField: 'selling_price',
       text: 'Selling Price',
       sort: true,
       headerStyle: {
-        width: '4%',
+        width: '6%',
       },
-    }, {
+    },
+    {
       dataField: 'shipping_charge',
       text: 'Shipping Charge',
       sort: true,
       headerStyle: {
-        width: '5%',
+        width: '8%',
       },
-    }, {
-      dataField: 'tracking_id',
-      text: 'Tracking Id',
-      headerStyle: {
-        width: '9%',
-      },
-    },
+    }, 
+    // {
+    //   dataField: 'tracking_id',
+    //   text: 'Tracking Id',
+    //   headerStyle: {
+    //     width: '9%',
+    //   },
+    // },
     {
       dataField: 'manage',
       text: 'manage',
       headerStyle: {
-        width: '5%',
+        width: '',
       },
-      formatter: btnFormatter
+      formatter: btnFormatter,
+      style: (row: any, rowIndex: any) => {
+        // return { backgroundColor: '#f5ef42' }
+      }
     },
   ];
 

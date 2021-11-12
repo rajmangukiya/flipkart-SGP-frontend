@@ -35,8 +35,6 @@ const ReturnOrders = () => {
           no: ((pageNumber - 1) * perPage) + index + 1
         }
       }));
-      console.log(res.data);
-      
       setTotalSize(res?.data?.count)
       setTotalPrice(res?.data?.total)
     } catch (error) {
@@ -75,7 +73,7 @@ const ReturnOrders = () => {
         </div>
         <label>
           <div className="btn-upload">
-            <div className="btn" >Upload New Sheet</div>
+            <div className="btna" >Upload New Sheet</div>
           </div>
           <input className="hide" type="file" onChange={(e: any) => setFile(e.target.files[0])}></input>
         </label>
