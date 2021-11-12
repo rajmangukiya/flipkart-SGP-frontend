@@ -6,6 +6,9 @@ import WithData from './WithData'
 import WithoutData from './WithoutData'
 import { Button } from 'react-bootstrap';
 import { RootStateOrAny, useSelector } from 'react-redux';
+
+
+// all functions about orders
 const Orders = () => {
 
   // variables and states
@@ -88,6 +91,7 @@ const Orders = () => {
     </div>
     {isThereData
       ?
+      // if data is available then this code will execute
       <WithData
         orderData={orderData}
         totalSize={totalSize}
@@ -95,6 +99,7 @@ const Orders = () => {
         setFilteredData={setFilteredData}
       />
       :
+      // if data is not available then this code will execute
       <WithoutData
         setFile={setFile}
       />}

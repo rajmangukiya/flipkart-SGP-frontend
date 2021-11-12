@@ -7,6 +7,7 @@ interface Props {
   setFile: any;
 }
 
+// all function about withoutdata
 const WithoutData: React.FC<Props> = (props) => {
 
   const { setFile } = props;

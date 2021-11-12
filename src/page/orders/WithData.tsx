@@ -10,6 +10,7 @@ interface Props {
   setFilteredData: any;
 }
 
+// all function if data is available
 const WithData: React.FC<Props> = (props) => {
 
   // variables and states
